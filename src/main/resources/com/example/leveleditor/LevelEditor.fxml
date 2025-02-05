@@ -41,14 +41,14 @@
 
     <!-- Área central -->
     <center>
-        <StackPane fx:id="mapPane" style="-fx-background-color: gray;">
+        <StackPane fx:id="mapPane" prefHeight="449.0" prefWidth="652.0" style="-fx-background-color: gray;">
             <children>
-                <ImageView fx:id="backgroundImage" fitHeight="300" fitWidth="400" preserveRatio="true">
+                <ImageView fx:id="backgroundImage" fitHeight="587.0" fitWidth="783.0" preserveRatio="true">
                     <image>
-                        <Image url="@/floor2.png" />
+                        <Image url="@/bg.png" />
                     </image>
                     <StackPane.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        <Insets />
                     </StackPane.margin>
                 </ImageView>
             </children>

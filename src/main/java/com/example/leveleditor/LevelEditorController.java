@@ -6,37 +6,40 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import java.util.Locale;
 
 public class LevelEditorController {
 
     @FXML
-    private StackPane mapPane; // StackPane principal
+    private StackPane mapPane;
     @FXML
-    private ImageView backgroundImage; // Imagen del mapa (floor2.png)
+    private ImageView backgroundImage;
 
-    // Margen extra alrededor de la imagen
-    private final double extraMargin = 100;
+    // Límites del editor (suelo del nivel)
+    private final double editorMinX = -1.8888097660223808;  // Esquina superior izquierda X
+    private final double editorMaxX = 2.013936927772126;    // Esquina inferior derecha X
+    private final double editorMinZ = -1.9721728081321483;  // Esquina inferior derecha Z
+    private final double editorMaxZ = 3.047903430749682;    // Esquina superior izquierda Z
 
-    // Límites de la imagen en Godot
-    private final double godotMinX = -4.5; // Esquina superior izquierda X
-    private final double godotMaxX = 4.7;  // Esquina inferior derecha X
-    private final double godotMinZ = 8.3;  // Esquina superior izquierda Z
-    private final double godotMaxZ = -8.3; // Esquina inferior derecha Z
+    // Límites de Godot (suelo del nivel)
+    private final double godotMinX = -4.6;  // Esquina superior izquierda X
+    private final double godotMaxX = 4.6;   // Esquina inferior derecha X
+    private final double godotMinZ = -8.3;  // Esquina inferior derecha Z
+    private final double godotMaxZ = 8.3;   // Esquina superior izquierda Z
 
     @FXML
     public void initialize() {
-        // Manejar clics en el mapa
         mapPane.setOnMouseClicked(this::placeTree);
     }
 
     private void placeTree(MouseEvent event) {
-        // Obtener la posición de la imagen dentro del StackPane con el margen extra
-        double imageMinX = backgroundImage.getLayoutX() - extraMargin;
-        double imageMinY = backgroundImage.getLayoutY() - extraMargin;
-        double imageMaxX = imageMinX + backgroundImage.getFitWidth() + (extraMargin * 2);
-        double imageMaxY = imageMinY + backgroundImage.getFitHeight() + (extraMargin * 2);
+        // Área de la imagen
+        double imageMinX = backgroundImage.getLayoutX();
+        double imageMinY = backgroundImage.getLayoutY();
+        double imageMaxX = imageMinX + backgroundImage.getFitWidth();
+        double imageMaxY = imageMinY + backgroundImage.getFitHeight();
 
-        // Verificar que el clic está dentro del área expandida de la imagen
+        // Verificar que el clic está dentro del área de la imagen
         if (event.getX() < imageMinX || event.getX() > imageMaxX ||
                 event.getY() < imageMinY || event.getY() > imageMaxY) {
             return; // No colocar el árbol si está fuera del área permitida
@@ -54,11 +57,17 @@ public class LevelEditorController {
         tree.setTranslateY(posY);
 
         // Convertir coordenadas JavaFX a Godot
-        double godotX = mapValue(event.getX(), imageMinX, imageMaxX, godotMinX, godotMaxX);
-        double godotZ = mapValue(event.getY(), imageMinY, imageMaxY, godotMinZ, godotMaxZ);
+        double normalizedX = (event.getX() - imageMinX) / (imageMaxX - imageMinX);
+        double normalizedZ = (event.getY() - imageMinY) / (imageMaxY - imageMinY);
+
+        // Mapear las coordenadas del editor a Godot
+        double godotX = mapValue(normalizedX, editorMinX, editorMaxX, godotMinX, godotMaxX);
+        double godotZ = mapValue(normalizedZ, editorMinZ, editorMaxZ, godotMinZ, godotMaxZ);
 
         // Imprimir la posición en coordenadas de Godot
-        System.out.println("Árbol colocado en Godot: X=" + godotX + ", Z=" + godotZ);
+        System.out.printf(Locale.US, "Árbol colocado en Godot: X=%.2f, Y=0.0, Z=%.2f%n",
+                Math.min(Math.max(godotX, godotMinX), godotMaxX),
+                Math.min(Math.max(godotZ, godotMaxZ), godotMinZ));
 
         // Agregar el árbol al mapa
         mapPane.getChildren().add(tree);
