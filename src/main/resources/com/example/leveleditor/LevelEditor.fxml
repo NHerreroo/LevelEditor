@@ -21,6 +21,7 @@
                         <MenuItem fx:id="newLevelMenuItem" text="Nuevo Nivel" />
                         <MenuItem fx:id="saveLevelMenuItem" text="Guardar Nivel" />
                         <MenuItem fx:id="openLevelMenuItem" text="Abrir Nivel" />
+                        <MenuItem fx:id="exportLevelMenuItem" text="Exportar a Godot" />
                         <MenuItem text="Salir" />
                     </items>
                 </Menu>
