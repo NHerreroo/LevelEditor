@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.leveleditor.LevelEditorController">
+<BorderPane prefHeight="546.0" prefWidth="957.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.leveleditor.LevelEditorController">
     <!-- Menú superior -->
     <top>
         <MenuBar>
@@ -40,12 +41,15 @@
 
     <!-- Área central -->
     <center>
-        <StackPane fx:id="mapPane" style="-fx-background-color: lightgray;">
+        <StackPane fx:id="mapPane" style="-fx-background-color: gray;">
         <children>
-                <ImageView preserveRatio="true" fitWidth="400" fitHeight="300">
+                <ImageView fitHeight="300" fitWidth="400" preserveRatio="true">
                     <image>
                         <Image url="@/floor2.png" />
                     </image>
+               <StackPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </StackPane.margin>
                 </ImageView>
             </children>
         </StackPane>
