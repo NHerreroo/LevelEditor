@@ -40,30 +40,26 @@ public class LevelEditorController {
 
     private void placeTree(MouseEvent event) {
         // Obtener las coordenadas del clic relativas al StackPane
-        double javafxX = event.getX() - mapPane.getWidth() / 2;
-        double javafxY = event.getY() - mapPane.getHeight() / 2;
+        double javafxX = event.getX() - mapPane.getWidth() / 2; // Eje horizontal en JavaFX
+        double javafxY = event.getY() - mapPane.getHeight() / 2; // Eje vertical en JavaFX
 
-        // Convertir coordenadas de JavaFX a Godot
-        double godotX = mapRange(javafxX, -213.50, 207.50, -4.6, 4.6);
-        double godotZ = mapRange(javafxY, -124.00, 116.00, 8.3, -8.3); // Nota: Z está invertido
-
-        // Crear y posicionar el árbol visualmente
+        // Crear y posicionar el árbol visualmente en JavaFX
         Rectangle tree = new Rectangle(50, 50, Color.GREEN);
         tree.setStroke(Color.BLACK);
         tree.setStrokeWidth(1);
         tree.setTranslateX(javafxX);
         tree.setTranslateY(javafxY);
 
-        // Añadir el árbol al exportador
-        treeExporter.addTree(godotX, godotZ);
+        // Imprimir las coordenadas en JavaFX para depuración
+        System.out.printf(Locale.US, "Árbol colocado en JavaFX: X=%.2f, Y=%.2f%n", javafxX, javafxY);
 
-        // Imprimir las coordenadas de Godot
-        System.out.printf(Locale.US, "Árbol colocado en Godot: X=%.2f, Y=0.00, Z=%.2f%n",
-                godotX , godotZ);
+        // Añadir el árbol al exportador (usando las coordenadas de JavaFX directamente)
+        treeExporter.addTree(javafxX, javafxY);
 
-        // Agregar el árbol al mapa
+        // Agregar el árbol al mapa en JavaFX
         mapPane.getChildren().add(tree);
     }
+
 
     private void exportLevel() throws java.io.IOException {
         FileChooser fileChooser = new FileChooser();
