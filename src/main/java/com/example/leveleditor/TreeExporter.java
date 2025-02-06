@@ -12,9 +12,9 @@ public class TreeExporter {
 
     public void addTree(double x, double z) {
         // Transformación de coordenadas (ajusta según sea necesario)
-        double godotX = z;  // Intercambia X y Z si es necesario
-        double godotY = 0.0; // Altura fija
-        double godotZ = -x; // Invierte el eje X si es necesario
+        double godotX = x;  // Intercambia X y Z si es necesario
+        double godotY = 2.7; // Altura fija
+        double godotZ = z; // Invierte el eje X si es necesario
 
         String treeNode = String.format(Locale.US,
                 "[node name=\"Tree%d\" parent=\".\" instance=ExtResource(\"5_rayau\")]\n" +

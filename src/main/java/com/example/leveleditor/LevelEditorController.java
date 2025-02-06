@@ -25,6 +25,17 @@ public class LevelEditorController {
 
     private final TreeExporter treeExporter = new TreeExporter();
 
+    // Coordenadas de referencia para la conversión
+    private final double javafxXMin = -216.50;
+    private final double javafxYMin = -128.00;
+    private final double javafxXMax = 216.50; // Ancho de la imagen
+    private final double javafxYMax = 128.00; // Altura de la imagen
+
+    private final double godotXMin = -4.6;
+    private final double godotZMin = 8.5;
+    private final double godotXMax = 4.6;
+    private final double godotZMax = -8.5;
+
     @FXML
     public void initialize() {
         mapPane.setOnMouseClicked(this::placeTree);
@@ -44,22 +55,28 @@ public class LevelEditorController {
         double javafxY = event.getY() - mapPane.getHeight() / 2; // Eje vertical en JavaFX
 
         // Crear y posicionar el árbol visualmente en JavaFX
-        Rectangle tree = new Rectangle(50, 50, Color.GREEN);
+        Rectangle tree = new Rectangle(25, 25, Color.GREEN);
         tree.setStroke(Color.BLACK);
         tree.setStrokeWidth(1);
         tree.setTranslateX(javafxX);
         tree.setTranslateY(javafxY);
 
-        // Imprimir las coordenadas en JavaFX para depuración
-        System.out.printf(Locale.US, "Árbol colocado en JavaFX: X=%.2f, Y=%.2f%n", javafxX, javafxY);
+        // Convertir las coordenadas de JavaFX a Godot
+        double[] godotCoords = convertirJavaFXaGodot(javafxX, javafxY);
+        double godotX = godotCoords[0];
+        double godotY = godotCoords[1];
+        double godotZ = godotCoords[2];
 
-        // Añadir el árbol al exportador (usando las coordenadas de JavaFX directamente)
-        treeExporter.addTree(javafxX, javafxY);
+        // Imprimir las coordenadas en ambos sistemas para depuración
+        System.out.printf(Locale.US, "Árbol colocado en JavaFX: X=%.2f, Y=%.2f%n", javafxX, javafxY);
+        System.out.printf(Locale.US, "Coordenadas en Godot: X=%.2f, Y=%.2f, Z=%.2f%n", godotX, godotY, godotZ);
+
+        // Añadir el árbol al exportador usando las coordenadas de Godot
+        treeExporter.addTree(godotX, godotZ);
 
         // Agregar el árbol al mapa en JavaFX
         mapPane.getChildren().add(tree);
     }
-
 
     private void exportLevel() throws java.io.IOException {
         FileChooser fileChooser = new FileChooser();
@@ -84,7 +101,20 @@ public class LevelEditorController {
     }
 
     /**
-     * Función para mapear un valor de un rango a otro
+     * Convertir coordenadas de JavaFX a Godot.
+     */
+
+    private double[] convertirJavaFXaGodot(double javafxX, double javafxY) {
+        // Mapear las coordenadas de JavaFX a las coordenadas de Godot
+        double godotX = mapRange(javafxY, javafxYMin, javafxYMax, godotXMin, godotXMax); // Y en JavaFX -> X en Godot
+        double godotY = 0.0; // Y en Godot es siempre 0
+        double godotZ = mapRange(javafxX, javafxXMin, javafxXMax, godotZMin, godotZMax); // X en JavaFX -> Z en Godot
+
+        // Invertir los valores
+        return new double[]{godotX, godotY, godotZ};
+    }
+    /**
+     * Función para mapear un valor de un rango a otro.
      */
     private double mapRange(double value, double oldMin, double oldMax, double newMin, double newMax) {
         return (value - oldMin) * (newMax - newMin) / (oldMax - oldMin) + newMin;
