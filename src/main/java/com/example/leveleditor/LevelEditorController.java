@@ -59,7 +59,7 @@ public class LevelEditorController {
 
         // Imprimir las coordenadas de Godot
         System.out.printf(Locale.US, "Árbol colocado en Godot: X=%.2f, Y=0.00, Z=%.2f%n",
-                godotX, godotZ);
+                godotX , godotZ);
 
         // Agregar el árbol al mapa
         mapPane.getChildren().add(tree);
