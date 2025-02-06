@@ -8,32 +8,78 @@ import java.util.Locale;
 
 public class TreeExporter {
 
-    private final List<String> trees = new ArrayList<>();
+    private final List<String> objects = new ArrayList<>(); // Lista para almacenar todos los objetos
 
-    public void addTree(double x, double z) {
+    // Método para añadir un objeto al exportador
+    public void addObject(String type, double x, double z) {
         // Transformación de coordenadas (ajusta según sea necesario)
-        double godotX = x;  // Intercambia X y Z si es necesario
+        double godotX = x;
         double godotY = 2.7; // Altura fija
-        double godotZ = z; // Invierte el eje X si es necesario
+        double godotZ = z;
 
-        String treeNode = String.format(Locale.US,
-                "[node name=\"Tree%d\" parent=\".\" instance=ExtResource(\"5_rayau\")]\n" +
+        // Determinar el ID del recurso externo según el tipo de objeto
+        String resourceId;
+        switch (type) {
+            case "tree_1":
+                resourceId = "5_rayau"; // Árbol 1
+                break;
+            case "tree_2":
+                resourceId = "6_tree2"; // Árbol 2
+                break;
+            case "tree_3":
+                resourceId = "7_tree3"; // Árbol 3
+                break;
+            case "rock_1":
+                resourceId = "8_rock1"; // Roca 1
+                break;
+            case "rock_2":
+                resourceId = "9_rock2"; // Roca 2
+                break;
+            case "rock_3":
+                resourceId = "10_rock3"; // Roca 3
+                break;
+            case "misc_1":
+                resourceId = "11_misc1"; // Misc 1
+                break;
+            case "misc_2":
+                resourceId = "12_misc2"; // Misc 2
+                break;
+            case "misc_3":
+                resourceId = "13_misc3"; // Misc 3
+                break;
+            default:
+                throw new IllegalArgumentException("Tipo de objeto no válido: " + type);
+        }
+
+        // Crear el nodo del objeto
+        String objectNode = String.format(Locale.US,
+                "[node name=\"%s%d\" parent=\".\" instance=ExtResource(\"%s\")]\n" +
                         "transform = Transform3D(-3.3412e-08, -0.382189, 0.661971, 0, 0.661971, 0.382189, -0.764378, 1.6706e-08, -2.89357e-08, %.2f, %.2f, %.2f)\n\n",
-                trees.size() + 1, godotX, godotY, godotZ
+                type, objects.size() + 1, resourceId, godotX, godotY, godotZ
         );
-        trees.add(treeNode);
+        objects.add(objectNode);
     }
 
+    // Método para exportar a un archivo .tscn
     public void exportToFile(String filePath) throws IOException {
         try (FileWriter writer = new FileWriter(filePath)) {
-            writer.write("[gd_scene load_steps=11 format=3 uid=\"uid://iq7h4wni125u\"]\n\n"); // Aumentado a 11 por el nuevo recurso
+            // Escribir la cabecera del archivo
+            writer.write("[gd_scene load_steps=14 format=3 uid=\"uid://iq7h4wni125u\"]\n\n");
 
             // Escribir los recursos externos
             writer.write("[ext_resource type=\"Script\" path=\"res://Scripts/RoomDefScript.gd\" id=\"1_mhvj4\"]\n");
             writer.write("[ext_resource type=\"Texture2D\" uid=\"uid://f8sjn4yqti7n\" path=\"res://Sprites/floor2.png\" id=\"2_crq44\"]\n");
             writer.write("[ext_resource type=\"PackedScene\" uid=\"uid://yemt84rb13g0\" path=\"res://Scenes/player.tscn\" id=\"3_is1ow\"]\n");
             writer.write("[ext_resource type=\"PackedScene\" uid=\"uid://h1p4uoq5vhsg\" path=\"res://Scenes/camera.tscn\" id=\"4_hte8x\"]\n");
-            writer.write("[ext_resource type=\"PackedScene\" uid=\"uid://bnt6qt7180qq0\" path=\"res://Scenes/Enviroment/tree_1.tscn\" id=\"5_rayau\"]\n\n"); // Nuevo recurso para el árbol
+            writer.write("[ext_resource type=\"PackedScene\" uid=\"uid://bnt6qt7180qq0\" path=\"res://Scenes/Enviroment/tree_1.tscn\" id=\"5_rayau\"]\n"); // Árbol 1
+            writer.write("[ext_resource type=\"PackedScene\" uid=\"uid://bnt6qt7180qq1\" path=\"res://Scenes/Enviroment/tree_2.tscn\" id=\"6_tree2\"]\n"); // Árbol 2
+            writer.write("[ext_resource type=\"PackedScene\" uid=\"uid://bnt6qt7180qq2\" path=\"res://Scenes/Enviroment/tree_3.tscn\" id=\"7_tree3\"]\n"); // Árbol 3
+            writer.write("[ext_resource type=\"PackedScene\" uid=\"uid://bnt6qt7180qq3\" path=\"res://Scenes/Enviroment/rock_1.tscn\" id=\"8_rock1\"]\n"); // Roca 1
+            writer.write("[ext_resource type=\"PackedScene\" uid=\"uid://bnt6qt7180qq4\" path=\"res://Scenes/Enviroment/rock_2.tscn\" id=\"9_rock2\"]\n"); // Roca 2
+            writer.write("[ext_resource type=\"PackedScene\" uid=\"uid://bnt6qt7180qq5\" path=\"res://Scenes/Enviroment/rock_3.tscn\" id=\"10_rock3\"]\n"); // Roca 3
+            writer.write("[ext_resource type=\"PackedScene\" uid=\"uid://bnt6qt7180qq6\" path=\"res://Scenes/Enviroment/misc_1.tscn\" id=\"11_misc1\"]\n"); // Misc 1
+            writer.write("[ext_resource type=\"PackedScene\" uid=\"uid://bnt6qt7180qq7\" path=\"res://Scenes/Enviroment/misc_2.tscn\" id=\"12_misc2\"]\n"); // Misc 2
+            writer.write("[ext_resource type=\"PackedScene\" uid=\"uid://bnt6qt7180qq8\" path=\"res://Scenes/Enviroment/misc_3.tscn\" id=\"13_misc3\"]\n\n"); // Misc 3
 
             // Escribir los sub-recursos
             writer.write("[sub_resource type=\"StandardMaterial3D\" id=\"StandardMaterial3D_lskdr\"]\n");
@@ -52,7 +98,7 @@ public class TreeExporter {
             writer.write("[sub_resource type=\"BoxShape3D\" id=\"BoxShape3D_wjxqr\"]\n");
             writer.write("size = Vector3(1, 4, 10)\n\n");
 
-            // Escribir los nodos
+            // Escribir los nodos principales
             writer.write("[node name=\"InitialRoom\" type=\"Node3D\"]\n");
             writer.write("script = ExtResource(\"1_mhvj4\")\n\n");
 
@@ -91,7 +137,7 @@ public class TreeExporter {
             writer.write("transform = Transform3D(5.91273, 0, 0, 0, 5.91273, 0, 0, 0, 5.91273, 0, 0, 9)\n");
             writer.write("collision_mask = 2\n\n");
 
-            // Escribir los nodos de colisión con las posiciones y rotaciones correctas
+            // Escribir los nodos de colisión
             String[] collisionNodes = {
                     "top1", "topbtwn", "top2", "right1", "rightbtwn", "right2", "left1", "leftbtwn", "left2", "bot1", "botbtwn", "bot2"
             };
@@ -118,9 +164,9 @@ public class TreeExporter {
 
             writer.write("[node name=\"Vegetation\" type=\"Node3D\" parent=\".\"]\n\n");
 
-            // Escribir los árboles
-            for (String tree : trees) {
-                writer.write(tree);
+            // Escribir los nodos de los objetos colocados
+            for (String object : objects) {
+                writer.write(object);
             }
 
             writer.write("[node name=\"Marker3D\" type=\"Marker3D\" parent=\".\"]\n");

@@ -97,7 +97,7 @@ public class LevelEditorController {
         double godotZ = godotCoords[2];
 
         // Añadir el objeto al exportador
-        treeExporter.addTree(godotX, godotZ);
+        treeExporter.addObject(selectedObjectType, godotX, godotZ);
 
         // Dibujar el objeto en el mapa
         Rectangle object = createObjectRectangle(selectedObjectType);
