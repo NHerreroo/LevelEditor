@@ -35,23 +35,114 @@
     <left>
         <VBox prefWidth="200.0" spacing="10.0" style="-fx-background-color: #f0f0f0; -fx-padding: 10;">
             <children>
-            <Accordion>
-              <panes>
-                <TitledPane animated="false" text="untitled 1">
-                     <content>
-                            <Button fx:id="treeButton_1" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Tree 1" textAlignment="JUSTIFY" textOverrun="CLIP">
-                           <graphic>
-                              <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                  <image>
-                                      <Image url="@../../../Images/Tree1.png" />
-                                  </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </content>
-                  </TitledPane>
-              </panes>
-            </Accordion>
+                <Accordion>
+                    <panes>
+                        <!-- Sección de Árboles -->
+                        <TitledPane animated="false" text="Árboles">
+                            <content>
+                                <VBox spacing="5.0">
+                                    <Button fx:id="treeButton_1" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Árbol 1" textAlignment="JUSTIFY" textOverrun="CLIP">
+                                        <graphic>
+                                            <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../../../Images/Tree1.png" />
+                                                </image>
+                                            </ImageView>
+                                        </graphic>
+                                    </Button>
+                                    <Button fx:id="treeButton_2" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="205.0" text="Árbol 2" textOverrun="CLIP">
+                                        <graphic>
+                                            <ImageView fitHeight="42.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../../../Images/Tree2Background.png" />
+                                                </image>
+                                            </ImageView>
+                                        </graphic>
+                                    </Button>
+                                    <Button fx:id="treeButton_3" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Árbol 3" textAlignment="JUSTIFY" textOverrun="CLIP">
+                                        <graphic>
+                                            <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../../../Images/tree2.png" />
+                                                </image>
+                                            </ImageView>
+                                        </graphic>
+                                    </Button>
+                                </VBox>
+                            </content>
+                        </TitledPane>
+
+                        <!-- Sección de Rocas -->
+                        <TitledPane animated="false" text="Rocas">
+                            <content>
+                                <VBox spacing="5.0">
+                                    <Button fx:id="rockButton_1" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Roca 1" textAlignment="JUSTIFY" textOverrun="CLIP">
+                                        <graphic>
+                                            <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../../../Images/rock3.png" />
+                                                </image>
+                                            </ImageView>
+                                        </graphic>
+                                    </Button>
+                                    <Button fx:id="rockButton_2" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Roca 2" textAlignment="JUSTIFY" textOverrun="CLIP">
+                                        <graphic>
+                                            <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../../../Images/rock4.png" />
+                                                </image>
+                                            </ImageView>
+                                        </graphic>
+                                    </Button>
+                                    <Button fx:id="rockButton_3" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Roca 3" textAlignment="JUSTIFY" textOverrun="CLIP">
+                                        <graphic>
+                                            <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../../../Images/stone2-2.png" />
+                                                </image>
+                                            </ImageView>
+                                        </graphic>
+                                    </Button>
+                                </VBox>
+                            </content>
+                        </TitledPane>
+
+                        <!-- Sección de Misc -->
+                        <TitledPane animated="false" text="Misc">
+                            <content>
+                                <VBox spacing="5.0">
+                                    <Button fx:id="miscButton_1" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Palo" textAlignment="JUSTIFY" textOverrun="CLIP">
+                                        <graphic>
+                                            <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../../../Images/lightPoster.png" />
+                                                </image>
+                                            </ImageView>
+                                        </graphic>
+                                    </Button>
+                                    <Button fx:id="miscButton_2" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Barril" textAlignment="JUSTIFY" textOverrun="CLIP">
+                                        <graphic>
+                                            <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../../../Images/Barrel.png" />
+                                                </image>
+                                            </ImageView>
+                                        </graphic>
+                                    </Button>
+                                    <Button fx:id="miscButton_3" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Hierba" textAlignment="JUSTIFY" textOverrun="CLIP">
+                                        <graphic>
+                                            <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../../../Images/GrassBG2.png" />
+                                                </image>
+                                            </ImageView>
+                                        </graphic>
+                                    </Button>
+                                </VBox>
+                            </content>
+                        </TitledPane>
+                    </panes>
+                </Accordion>
             </children>
         </VBox>
     </left>
