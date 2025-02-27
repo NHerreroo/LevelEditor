@@ -60,6 +60,11 @@ public class TreeExporter {
         objects.add(objectNode);
     }
 
+    public void clearObjects() {
+        objects.clear();
+    }
+
+
     // Método para exportar a un archivo .tscn
     public void exportToFile(String filePath) throws IOException {
         try (FileWriter writer = new FileWriter(filePath)) {
@@ -165,9 +170,14 @@ public class TreeExporter {
             writer.write("[node name=\"Vegetation\" type=\"Node3D\" parent=\".\"]\n\n");
 
             // Escribir los nodos de los objetos colocados
-            for (String object : objects) {
-                writer.write(object);
-            }
+            objects.stream().forEach(object -> {
+                try {
+                    writer.write(object);
+                } catch (IOException e) {
+                    throw new RuntimeException("Error al escribir el archivo", e);
+                }
+            });
+
 
             writer.write("[node name=\"Marker3D\" type=\"Marker3D\" parent=\".\"]\n");
             writer.write("transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.68025, 0, -8.35926)\n");

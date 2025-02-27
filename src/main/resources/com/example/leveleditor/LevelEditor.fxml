@@ -13,18 +13,15 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="546.0" prefWidth="957.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.leveleditor.LevelEditorController">
-    <!-- Menú superior -->
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.leveleditor.LevelEditorController" styleClass="root">
     <top>
-        <MenuBar>
+        <MenuBar styleClass="menu-bar">
             <menus>
                 <Menu text="Archivo">
                     <items>
                         <MenuItem fx:id="newLevelMenuItem" text="Nuevo Nivel" />
-                        <MenuItem fx:id="saveLevelMenuItem" text="Guardar Nivel" />
-                        <MenuItem fx:id="openLevelMenuItem" text="Abrir Nivel" />
                         <MenuItem fx:id="exportLevelMenuItem" text="Exportar a Godot" />
-                        <MenuItem text="Salir" />
+                        <MenuItem fx:id="exitMenuItem" text="Salir" />
                     </items>
                 </Menu>
             </menus>
@@ -33,15 +30,15 @@
 
     <!-- Menú lateral -->
     <left>
-        <VBox prefWidth="200.0" spacing="10.0" style="-fx-background-color: #f0f0f0; -fx-padding: 10;">
+        <VBox prefWidth="200.0" spacing="10.0" styleClass="sidebar">
             <children>
-                <Accordion>
+                <Accordion styleClass="sidebar-accordion">
                     <panes>
                         <!-- Sección de Árboles -->
-                        <TitledPane animated="false" text="Árboles">
+                        <TitledPane animated="false" text="Árboles" styleClass="category-pane">
                             <content>
-                                <VBox spacing="5.0">
-                                    <Button fx:id="treeButton_1" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Árbol 1" textAlignment="JUSTIFY" textOverrun="CLIP">
+                                <VBox spacing="5.0" styleClass="category-content">
+                                    <Button fx:id="treeButton_1" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Árbol 1" textAlignment="JUSTIFY" textOverrun="CLIP" styleClass="item-button, tree-button">
                                         <graphic>
                                             <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
@@ -50,7 +47,7 @@
                                             </ImageView>
                                         </graphic>
                                     </Button>
-                                    <Button fx:id="treeButton_2" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="205.0" text="Árbol 2" textOverrun="CLIP">
+                                    <Button fx:id="treeButton_2" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="205.0" text="Árbol 2" textOverrun="CLIP" styleClass="item-button, tree-button">
                                         <graphic>
                                             <ImageView fitHeight="42.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
@@ -59,7 +56,7 @@
                                             </ImageView>
                                         </graphic>
                                     </Button>
-                                    <Button fx:id="treeButton_3" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Árbol 3" textAlignment="JUSTIFY" textOverrun="CLIP">
+                                    <Button fx:id="treeButton_3" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Árbol 3" textAlignment="JUSTIFY" textOverrun="CLIP" styleClass="item-button, tree-button">
                                         <graphic>
                                             <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
@@ -73,10 +70,10 @@
                         </TitledPane>
 
                         <!-- Sección de Rocas -->
-                        <TitledPane animated="false" text="Rocas">
+                        <TitledPane animated="false" text="Rocas" styleClass="category-pane">
                             <content>
-                                <VBox spacing="5.0">
-                                    <Button fx:id="rockButton_1" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Roca 1" textAlignment="JUSTIFY" textOverrun="CLIP">
+                                <VBox spacing="5.0" styleClass="category-content">
+                                    <Button fx:id="rockButton_1" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Roca 1" textAlignment="JUSTIFY" textOverrun="CLIP" styleClass="item-button, rock-button">
                                         <graphic>
                                             <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
@@ -85,7 +82,7 @@
                                             </ImageView>
                                         </graphic>
                                     </Button>
-                                    <Button fx:id="rockButton_2" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Roca 2" textAlignment="JUSTIFY" textOverrun="CLIP">
+                                    <Button fx:id="rockButton_2" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Roca 2" textAlignment="JUSTIFY" textOverrun="CLIP" styleClass="item-button, rock-button">
                                         <graphic>
                                             <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
@@ -94,7 +91,7 @@
                                             </ImageView>
                                         </graphic>
                                     </Button>
-                                    <Button fx:id="rockButton_3" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Roca 3" textAlignment="JUSTIFY" textOverrun="CLIP">
+                                    <Button fx:id="rockButton_3" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Roca 3" textAlignment="JUSTIFY" textOverrun="CLIP" styleClass="item-button, rock-button">
                                         <graphic>
                                             <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
@@ -108,10 +105,10 @@
                         </TitledPane>
 
                         <!-- Sección de Misc -->
-                        <TitledPane animated="false" text="Misc">
+                        <TitledPane animated="false" text="Misc" styleClass="category-pane">
                             <content>
-                                <VBox spacing="5.0">
-                                    <Button fx:id="miscButton_1" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Palo" textAlignment="JUSTIFY" textOverrun="CLIP">
+                                <VBox spacing="5.0" styleClass="category-content">
+                                    <Button fx:id="miscButton_1" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Palo" textAlignment="JUSTIFY" textOverrun="CLIP" styleClass="item-button, misc-button">
                                         <graphic>
                                             <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
@@ -120,7 +117,7 @@
                                             </ImageView>
                                         </graphic>
                                     </Button>
-                                    <Button fx:id="miscButton_2" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Barril" textAlignment="JUSTIFY" textOverrun="CLIP">
+                                    <Button fx:id="miscButton_2" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Barril" textAlignment="JUSTIFY" textOverrun="CLIP" styleClass="item-button, misc-button">
                                         <graphic>
                                             <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
@@ -129,7 +126,7 @@
                                             </ImageView>
                                         </graphic>
                                     </Button>
-                                    <Button fx:id="miscButton_3" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Hierba" textAlignment="JUSTIFY" textOverrun="CLIP">
+                                    <Button fx:id="miscButton_3" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="205.0" text="Hierba" textAlignment="JUSTIFY" textOverrun="CLIP" styleClass="item-button, misc-button">
                                         <graphic>
                                             <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
@@ -149,7 +146,7 @@
 
     <!-- Área central -->
     <center>
-        <StackPane fx:id="mapPane" prefHeight="449.0" prefWidth="652.0" style="-fx-background-color: gray;">
+        <StackPane fx:id="mapPane" prefHeight="449.0" prefWidth="652.0" styleClass="map-pane">
             <children>
                 <ImageView fx:id="backgroundImage" fitHeight="587.0" fitWidth="783.0" preserveRatio="true">
                     <image>

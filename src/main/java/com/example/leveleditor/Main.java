@@ -13,6 +13,7 @@ public class Main extends Application {
 
         // Crear la escena
         Scene scene = new Scene(fxmlLoader.load()); // Tamaño inicial: 1200x800
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
         // Configurar el Stage
         primaryStage.setTitle("LevelEditor");

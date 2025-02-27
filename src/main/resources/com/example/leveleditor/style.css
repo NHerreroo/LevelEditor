@@ -1,0 +1,298 @@
+/* Variables de colores inspirados en Godot Engine */
+* {
+    /* Colores base de Godot */
+    -fx-godot-dark-bg: #202531;
+    -fx-godot-panel-bg: #262c3b;
+    -fx-godot-sub-panel: #1d2229;
+    -fx-godot-accent: #5dabdc;
+    -fx-godot-accent-hover: #75c5f0;
+    -fx-godot-accent-pressed: #3d8bb8;
+    -fx-godot-border: #141925;
+    -fx-godot-text: #ffffff;
+    -fx-godot-text-secondary: #cccccc;
+    -fx-godot-text-disabled: #808080;
+    -fx-godot-selected: #274e79;
+    -fx-godot-hover: #2c3143;
+
+    /* Colores para categorías */
+    -fx-godot-green: #80c342;
+    -fx-godot-brown: #a67c52;
+    -fx-godot-orange: #e19e41;
+
+    /* Configuración general */
+    -fx-focus-color: -fx-godot-accent;
+    -fx-accent: -fx-godot-accent;
+}
+
+/* Estilos generales */
+.root {
+    -fx-font-family: 'Roboto', 'Segoe UI', sans-serif;
+    -fx-background-color: -fx-godot-dark-bg;
+    -fx-font-size: 13px;
+    -fx-text-fill: -fx-godot-text;
+}
+
+/* Barra de menú */
+.menu-bar {
+    -fx-background-color: -fx-godot-sub-panel;
+    -fx-padding: 0.2em;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 3, 0, 0, 1);
+}
+
+.menu-bar .menu {
+    -fx-padding: 0.3em 0.8em;
+}
+
+.menu-bar .menu .label {
+    -fx-text-fill: -fx-godot-text;
+    -fx-font-weight: normal;
+}
+
+.menu-bar .menu:hover {
+    -fx-background-color: -fx-godot-hover;
+}
+
+.menu-item {
+    -fx-padding: 0.5em 1em;
+    -fx-background-color: -fx-godot-panel-bg;
+}
+
+.menu-item .label {
+    -fx-text-fill: -fx-godot-text !important;
+}
+
+.menu-item:hover {
+    -fx-background-color: -fx-godot-hover;
+}
+
+.menu-item:hover .label {
+    -fx-text-fill: -fx-godot-text;
+}
+
+.context-menu {
+    -fx-background-color: -fx-godot-panel-bg;
+    -fx-border-color: -fx-godot-border;
+    -fx-border-width: 1px;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+    -fx-text-fill: -fx-godot-text;
+}
+
+/* Sidebar */
+.sidebar {
+    -fx-background-color: -fx-godot-panel-bg;
+    -fx-padding: 10px;
+    -fx-border-width: 0 1px 0 0;
+    -fx-border-color: -fx-godot-border;
+}
+
+/* Acordeón */
+.sidebar-accordion {
+    -fx-background-color: transparent;
+}
+
+.sidebar-accordion .titled-pane {
+    -fx-animated: true;
+}
+
+/* Paneles de categoría */
+.category-pane {
+    -fx-border-width: 1px;
+    -fx-border-color: -fx-godot-border;
+    -fx-border-radius: 3px;
+    -fx-background-color: -fx-godot-panel-bg;
+    -fx-text-fill: -fx-godot-text;
+}
+
+.category-pane > .title {
+    -fx-background-color: -fx-godot-sub-panel;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-text-fill: -fx-godot-text;
+    -fx-padding: 8px 12px;
+    -fx-border-radius: 3px 3px 0 0;
+}
+
+.category-pane:expanded > .title {
+    -fx-border-radius: 3px 3px 0 0;
+}
+
+.category-pane > .title > .arrow-button .arrow {
+    -fx-background-color: -fx-godot-text;
+    -fx-background-insets: 0;
+    -fx-padding: 0.25em 0.3125em;
+    -fx-shape: "M 0 0 h 7 l -3.5 4 z";
+}
+
+.category-pane > *.content {
+    -fx-background-color: -fx-godot-panel-bg;
+    -fx-border-width: 0 1px 1px 1px;
+    -fx-border-color: -fx-godot-border;
+    -fx-border-radius: 0 0 3px 3px;
+    -fx-padding: 10px;
+}
+
+.category-content {
+    -fx-spacing: 8px;
+}
+
+/* Botones de elementos */
+.item-button {
+    -fx-background-color: -fx-godot-sub-panel;
+    -fx-border-color: -fx-godot-border;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-padding: 8px;
+    -fx-alignment: center-left;
+    -fx-content-display: left;
+    -fx-graphic-text-gap: 10px;
+    -fx-cursor: hand;
+    -fx-text-fill: -fx-godot-text !important;
+}
+
+.item-button:hover {
+    -fx-background-color: -fx-godot-hover;
+}
+
+.item-button:pressed {
+    -fx-background-color: -fx-godot-selected;
+}
+
+/* Estilos específicos por categoría */
+.tree-button {
+    -fx-border-color: derive(-fx-godot-green, -20%);
+}
+
+.tree-button:hover {
+    -fx-background-color: derive(-fx-godot-green, -60%);
+}
+
+.rock-button {
+    -fx-border-color: derive(-fx-godot-brown, -20%);
+}
+
+.rock-button:hover {
+    -fx-background-color: derive(-fx-godot-brown, -60%);
+}
+
+.misc-button {
+    -fx-border-color: derive(-fx-godot-orange, -20%);
+}
+
+.misc-button:hover {
+    -fx-background-color: derive(-fx-godot-orange, -60%);
+}
+
+/* Área del mapa */
+.map-pane {
+    -fx-background-color: -fx-godot-dark-bg;
+    -fx-border-width: 1px;
+    -fx-border-color: -fx-godot-border;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 0);
+}
+
+/* Estilo para botones seleccionados */
+.item-button:focused {
+    -fx-background-color: -fx-godot-selected;
+    -fx-border-color: -fx-godot-accent;
+    -fx-border-width: 1px;
+}
+
+/* Scrollbars */
+.scroll-bar {
+    -fx-background-color: -fx-godot-sub-panel;
+    -fx-pref-width: 12;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: -fx-godot-accent-pressed;
+    -fx-background-radius: 3px;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: -fx-godot-sub-panel;
+    -fx-padding: 0 0.25em;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-background-color: -fx-godot-text-secondary;
+}
+
+/* Tooltip */
+.tooltip {
+    -fx-background-color: -fx-godot-panel-bg;
+    -fx-text-fill: -fx-godot-text;
+    -fx-font-size: 12px;
+    -fx-padding: 5px 10px;
+    -fx-background-radius: 3px;
+    -fx-border-color: -fx-godot-border;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+}
+
+/* Estilos adicionales para que se parezca más a Godot */
+.button {
+    -fx-background-radius: 3px;
+    -fx-text-fill: -fx-godot-text;
+}
+
+/* Estilo para imágenes en botones para que se vean mejor en fondo oscuro */
+.item-button .image-view {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 5, 0, 0, 0);
+}
+
+/* Asegurar que todo el texto en los TitledPane y sus contenidos sea blanco */
+.titled-pane {
+    -fx-text-fill: -fx-godot-text;
+}
+
+.titled-pane > .title {
+    -fx-text-fill: -fx-godot-text;
+}
+
+.titled-pane > .title > .text {
+    -fx-fill: -fx-godot-text;
+}
+
+/* Asegurar que el texto de los botones sea blanco */
+.button {
+    -fx-text-fill: -fx-godot-text;
+}
+
+/* Texto blanco en menús desplegables */
+.menu {
+    -fx-text-fill: -fx-godot-text;
+}
+
+.menu-item .label {
+    -fx-text-fill: -fx-godot-text;
+}
+
+.context-menu {
+    -fx-text-fill: -fx-godot-text;
+}
+
+/* Asegurar que los botones de elementos tengan texto blanco */
+.item-button {
+    -fx-text-fill: -fx-godot-text !important;
+}
+
+/* Asegurar que cualquier label tenga texto blanco */
+.label {
+    -fx-text-fill: -fx-godot-text;
+}
+
+/* Asegurar que los textos en los menús sean blancos */
+.menu .label {
+    -fx-text-fill: -fx-godot-text;
+}
+
+.menu-item > .label {
+    -fx-text-fill: -fx-godot-text;
+}
+
+.context-menu .label {
+    -fx-text-fill: -fx-godot-text;
+}
